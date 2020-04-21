@@ -1,4 +1,4 @@
-package exercises.trees;
+package exercises.tree;
 
 import exercises.array.helper.TreeNode;
 

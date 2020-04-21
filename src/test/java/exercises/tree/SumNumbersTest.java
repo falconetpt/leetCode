@@ -1,7 +1,6 @@
 package exercises.tree;
 
 import exercises.array.helper.TreeNode;
-import exercises.trees.SumNumbers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
