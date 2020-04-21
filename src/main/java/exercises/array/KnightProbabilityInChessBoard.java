@@ -1,5 +1,7 @@
 package exercises.array;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,22 +25,30 @@ public class KnightProbabilityInChessBoard {
         if(K == 0) {
             return isValid(N, r, c) ? 1 : 0;
         } else {
-            return calculateProbability(N, K, r, c, moves) / Math.pow(8, K);
+            return calculateProbability(N, K, r, c, moves, new HashMap<>()).divide(
+                    BigDecimal.valueOf(Math.pow(8, K)), 10, RoundingMode.HALF_EVEN
+            ).doubleValue();
         }
     }
 
-    private long calculateProbability(int matrixSize, int hops, int r, int c, List<Pair> moves) {
+    private BigDecimal calculateProbability(int matrixSize, int hops, int r, int c, List<Pair> moves, Map<String, BigDecimal> cache) {
         if (hops == 0) {
-            return 1;
+            return BigDecimal.ONE;
         } else {
-            List<Pair> nextPositions = moves.stream()
-                    .map(move -> new Pair(move.rowIndex + r, move.colIndex + c))
-                    .filter(coord -> isValid(matrixSize, coord.rowIndex, coord.colIndex))
-                    .collect(Collectors.toList());
-
-            return nextPositions.stream()
-                    .map(p -> calculateProbability(matrixSize, hops - 1, p.rowIndex, p.colIndex, moves))
-                    .reduce(0L, Long::sum);
+            String key = r +  ":" + c + ":" + hops;
+            if(cache.containsKey(key)) {
+                return cache.get(key);
+            } else {
+                List<Pair> nextPositions = moves.stream()
+                        .map(move -> new Pair(move.rowIndex + r, move.colIndex + c))
+                        .filter(coord -> isValid(matrixSize, coord.rowIndex, coord.colIndex))
+                        .collect(Collectors.toList());
+                BigDecimal result = nextPositions.stream()
+                        .map(p -> calculateProbability(matrixSize, hops - 1, p.rowIndex, p.colIndex, moves, cache))
+                        .reduce(BigDecimal.ZERO, BigDecimal::add);
+                cache.putIfAbsent(key, result);
+                return result;
+            }
         }
     }
 

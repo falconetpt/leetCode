@@ -90,16 +90,16 @@ class KnightProbabilityInChessBoardTest {
         double result = k.knightProbability(3, 3, 0, 0);
         double expectedResult = 0.01562;
 
-        assertEquals(expectedResult, result, 0.0005);
+        assertEquals(expectedResult, result, 0.000005);
     }
 
     @Test
     void knightProbabilityWithDoubleHopInThreeSidedBoard_scenario3() {
-//        double result = k.knightProbability(8,30,6,4);
-//        double expectedResult = 0.00019;
-//
-//        System.out.println(result);
-//
-//        assertEquals(expectedResult, result, 0.0005);
+        double result = k.knightProbability(8,30,6,4);
+        double expectedResult = 0.00019;
+
+        System.out.println(result);
+
+        assertEquals(expectedResult, result, 0.000005);
     }
 }
