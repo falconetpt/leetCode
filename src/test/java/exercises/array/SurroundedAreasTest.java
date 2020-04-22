@@ -116,6 +116,7 @@ class SurroundedAreasTest {
 
         assertArrayEquals(expectedResult, board);
     }
+
     @Test
     void solveBoardWithMultiple0s_2() {
 
@@ -135,13 +136,27 @@ class SurroundedAreasTest {
                 new char[] { 'X','X','O','X','O' },
         };
 
-        /**
-         * ["O","X","X","O","X"],
-         * ["X","X","X","X","O"],
-         * ["X","X","X","X","X"],
-         * ["O","X","O","O","O"],
-         * ["X","X","O","X","O"]
-          */
+        s.solve(board);
+
+        assertArrayEquals(expectedResult, board);
+    }
+
+    @Test
+    void solveBoardWithMultiple0s_3() {
+
+        char[][] board = new char[][] {
+                {'X','O','X','O','X','O'},
+                {'O','X','O','X','O','X'},
+                {'X','O','X','O','X','O'},
+                {'O','X','O','X','O','X'}
+        };
+
+        char[][] expectedResult = new char[][] {
+                {'X','O','X','O','X','O'},
+                {'O','X','X','X','X','X'},
+                {'X','X','X','X','X','O'},
+                {'O','X','O','X','O','X'}
+        };
 
         s.solve(board);
 

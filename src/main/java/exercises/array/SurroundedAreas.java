@@ -1,72 +1,94 @@
 package exercises.array;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class SurroundedAreas {
 
     public void solve(char[][] board) {
-        final Map<Integer, Pair> columnRegister = new HashMap<>();
-        final Map<Integer, Pair> rowRegister = new HashMap<>();
-        final Set<Pair> toEvaluate = new HashSet<>();
+        if (board.length > 0 && board[0].length > 0) {
+            Set<Pair> moves = Stream.of(
+                    new Pair(1, 0),
+                    new Pair(0, 1),
+                    new Pair(-1, 0),
+                    new Pair(0, -1)
+            ).collect(Collectors.toSet());
 
-        for (int row = 0; row < board.length; row++) {
-            for (int column = 0; column < board[row].length; column++) {
-                if (board[row][column] == 'O') {
-                    if (isSurrounded(board, row, column)) {
-                        board[row][column] = 'X';
-                    } else {
-                        toEvaluate.add(new Pair(row, column));
-                    }
-                } else {
-                    if(rowRegister.containsKey(row)) {
-                        rowRegister.get(row).second = column;
-                    } else {
-                        rowRegister.put(row, new Pair(column));
-                    }
+            Set<Pair> findAllOInBorders = findAll0InBorders(board);
+            expand0s(board, findAllOInBorders, moves);
 
-                    if(columnRegister.containsKey(column)) {
-                        columnRegister.get(column).second = row;
-                    } else {
-                        columnRegister.put(column, new Pair(row));
+            for (int row = 0; row < board.length; row++) {
+                for (int col = 0; col < board[row].length; col++) {
+                    if(board[row][col] == 'O') {
+                        board[row][col] = 'X';
+                    } else if(board[row][col] == '*') {
+                        board[row][col] = 'O';
                     }
                 }
             }
         }
-
-        toEvaluate.stream()
-                .filter(p -> rowRegister.containsKey(p.first) && columnRegister.containsKey(p.second))
-                .filter(p -> rowRegister.get(p.first).first.compareTo(p.second) < 0)
-                .filter(p -> rowRegister.get(p.first).second.compareTo(p.second) > 0)
-                .filter(p -> columnRegister.get(p.second).first.compareTo(p.first) < 0)
-                .filter(p -> columnRegister.get(p.second).second.compareTo(p.first) > 0)
-                .forEach(p -> board[p.first][p.second] = 'X');
     }
 
-    private boolean isSurrounded(char[][] board, int row, int column) {
+    private void expand0s(char[][] board, Set<Pair> remainingPairs, Set<Pair> moves) {
+        if (!remainingPairs.isEmpty()) {
+            Pair base = remainingPairs.iterator().next();
+            board[base.row][base.col] = '*';
+
+            moves.stream()
+                    .map(m -> new Pair(base.row + m.row, base.col + m.col))
+                    .filter(m -> isValid0(board, m.row, m.col))
+                    .forEach(remainingPairs::add);
+            remainingPairs.remove(base);
+            expand0s(board, remainingPairs, moves);
+        }
+    }
+
+    private boolean isValid0(char[][] board, int row, int col) {
         try {
-            boolean verticalMatch = board[row - 1][column] == 'X' && board[row + 1][column] == 'X';
-            boolean horizontalMatch = board[row][column - 1] == 'X' && board[row][column + 1] == 'X';
-            return verticalMatch && horizontalMatch;
-        } catch (ArrayIndexOutOfBoundsException e) {
+            return board[row][col] == 'O';
+        } catch (IndexOutOfBoundsException e) {
             return false;
         }
     }
 
-    private class Pair {
-        public Integer first;
-        public Integer second = Integer.MIN_VALUE;
+    private Set<Pair> findAll0InBorders(char[][] board) {
+        Set<Pair> result = new HashSet<>();
 
-        Pair(int first) {
-            this.first = first;
-        }
+        IntStream.range(0, board[0].length).boxed()
+                .filter(i -> board[0][i] == 'O')
+                .map(i -> new Pair(0, i))
+                .forEach(result::add);
 
-        Pair(int first, int second) {
-            this.first = first;
-            this.second = second;
+        IntStream.range(0, board[0].length).boxed()
+                .filter(i -> board[board.length-1][i] == 'O')
+                .map(i -> new Pair(board.length-1, i))
+                .forEach(result::add);
+
+        IntStream.range(0, board.length).boxed()
+                .filter(i -> board[i][0] == 'O')
+                .map(i -> new Pair(i, 0))
+                .forEach(result::add);
+
+        IntStream.range(0, board.length).boxed()
+                .filter(i -> board[i][board[0].length - 1] == 'O')
+                .map(i -> new Pair( i, board[0].length - 1))
+                .forEach(result::add);
+
+        return result;
+    }
+
+
+    public class Pair {
+        public int row;
+        public int col;
+
+        public Pair(int row, int col) {
+            this.row = row;
+            this.col = col;
         }
 
         @Override
@@ -74,13 +96,13 @@ public class SurroundedAreas {
             if (this == o) return true;
             if (!(o instanceof Pair)) return false;
             Pair pair = (Pair) o;
-            return Objects.equals(first, pair.first) &&
-                    Objects.equals(second, pair.second);
+            return Objects.equals(row, pair.row) &&
+                    Objects.equals(col, pair.col);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(first, second);
+            return Objects.hash(row, col);
         }
     }
 
