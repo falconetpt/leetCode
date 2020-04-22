@@ -2,8 +2,8 @@ package exercises.array.helper;
 
 public class TreeNode {
     public int val;
-    private TreeNode left;
-    private TreeNode right;
+    public TreeNode left;
+    public TreeNode right;
 
     public TreeNode(int x) { val = x; }
 
