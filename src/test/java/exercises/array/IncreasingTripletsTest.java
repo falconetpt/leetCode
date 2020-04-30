@@ -57,6 +57,24 @@ class IncreasingTripletsTest {
     @DisplayName("Array with multiple elements ascending should return true")
     void test6() {
         boolean result = i.increasingTriplet(new int[] { 4, 2, 1, 5, 3, 6 });
+        boolean expected = false;
+
+        assertEquals(expected, result);
+    }
+
+    @Test
+    @DisplayName("Array with multiple elements ascending should return true")
+    void test7() {
+        boolean result = i.increasingTriplet(new int[] { 2, 4, 2, 0, 2, 1, 0, 2, 1, 4, 2 });
+        boolean expected = false;
+
+        assertEquals(expected, result);
+    }
+
+    @Test
+    @DisplayName("Array with multiple elements ascending should return true")
+    void test8() {
+        boolean result = i.increasingTriplet(new int[] { 2, 3, 4, 1 });
         boolean expected = true;
 
         assertEquals(expected, result);
