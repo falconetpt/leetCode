@@ -1,33 +1,20 @@
 package exercises.array;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class IncreasingTriplets {
     public boolean increasingTriplet(int[] nums) {
-        List<Integer> max = Arrays.stream(nums).boxed()
-                .sorted((a, b) -> - a.compareTo(b))
-                .limit(2)
-                .collect(Collectors.toList());
-
-        if (max.isEmpty()) {
+        if (nums == null && nums.length < 3) {
             return false;
         } else {
-            return increasingTriplet(nums, 0, Integer.MIN_VALUE, 0, max);
-        }
-    }
+            int num1 = Integer.MAX_VALUE;
+            int num2 = Integer.MAX_VALUE;
 
-    private boolean increasingTriplet(int[] nums, int index, int minValue, int count, List<Integer> max) {
-        if (count == 3) {
-            return true;
-        } else if(index >= nums.length) {
+            for (int i = 0, n = nums.length; i < n; i++) {
+                if (nums[i] > num2) return true;
+                if (nums[i] > num1) num2 = nums[i];
+                if (nums[i] < num1) num1 = nums[i];
+            }
+
             return false;
-        } else if (nums[index] >= minValue) {
-            return max.stream().anyMatch(n -> nums[index] <= n)
-                    && increasingTriplet(nums, index + 1, nums[index], count + 1, max);
-        } else {
-            return increasingTriplet(nums, index + 1, minValue, count, max);
         }
     }
 }
