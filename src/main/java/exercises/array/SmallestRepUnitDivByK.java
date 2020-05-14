@@ -5,7 +5,7 @@ import java.util.stream.Stream;
 
 public class SmallestRepUnitDivByK {
     public int smallestRepunitDivByK(int K) {
-        if (K % 2 == 0) {
+        if (K % 2 == 0 || K % 5 == 0) {
             return -1;
         } else {
             return Stream.iterate( BigInteger.ONE,  (i) -> i.multiply( BigInteger.valueOf( 10L ) ).add( BigInteger.ONE ))
