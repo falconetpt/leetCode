@@ -71,7 +71,7 @@ class TotalHammingDistanceTest {
         assertEquals( expected, result );
     }
 
-//    @Test
+//    @LeroLero
 //    @DisplayName( "6 - Multiple pair element List Should return difference" )
 //    void test8() {
 //        int result = t.totalHammingDistance( new int[] { 6,1,8,6,8 } );
