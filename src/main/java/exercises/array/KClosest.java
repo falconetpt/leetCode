@@ -14,6 +14,6 @@ public class KClosest {
     }
 
     private Integer eucladianDistance(int x, int y) {
-        return Integer.valueOf((int) (Math.pow(x, 2) + Math.pow(y, 2));
+        return (int) (Math.pow( x, 2 ) + Math.pow( y, 2 ));
     }
 }
