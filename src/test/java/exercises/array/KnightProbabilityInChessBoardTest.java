@@ -94,7 +94,7 @@ class KnightProbabilityInChessBoardTest {
     }
 
     @Test
-    void knightProbabilityWithDoubleHopInThreeSidedBoard_scenario3() {
+    void knightProbabilityWithDoubleHopInEightSidedBoard_scenario3() {
         double result = k.knightProbability(8,30,6,4);
         double expectedResult = 0.00019;
 
