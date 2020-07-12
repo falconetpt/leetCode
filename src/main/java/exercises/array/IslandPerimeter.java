@@ -19,6 +19,7 @@ public class IslandPerimeter {
                             .map( c -> new Point( r, c ) ) )
                     .filter( p -> isLand( grid, p ) )
                     .collect( Collectors.toCollection( LinkedList::new ) );
+
             List<Point> moves = Stream.of(
                     new Point( 1, 0 ),
                     new Point( -1, 0 ),
