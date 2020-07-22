@@ -17,36 +17,34 @@ public class WordSearch {
                 new Point(-1, 0)
         ).collect( Collectors.toList());
 
-        List<Point> beggining = IntStream.range( 0, board.length ).boxed()
+        return IntStream.range( 0, board.length ).boxed()
                 .flatMap( row ->
                         IntStream.range( 0, board[row].length ).boxed()
                                 .filter( col -> board[row][col] == word.charAt( 0 ) )
                                 .map( col -> new Point( row, col ) )
                 )
-                .collect( Collectors.toList() );
-
-        if (word.length() == 1 && !beggining.isEmpty()) return true;
-
-        return beggining.stream().anyMatch( p -> exist(board, word, moves, p, new HashSet<>()) );
+                .anyMatch( p -> exist(board, word, moves, p, new int[board.length][board[0].length], 0) );
     }
 
-    private boolean exist(char[][] board, String word, List<Point> moves, Point point, Set<Point> visited) {
-        if (word.isEmpty()) {
-            return true;
-        } else if(word.length() == 1) {
-            return word.charAt(0) == board[point.x][point.y];
-        } else {
-            char value = word.charAt( 0 );
-            boolean matches = board[point.x][point.y] == value;
-            Set<Point> newSet = new HashSet<>( visited );
-            newSet.add( point );
+    private boolean exist(char[][] board, String word, List<Point> moves, Point point, int[][] seen, int idx) {
 
-            return matches && moves.stream()
+        if(word.length() - 1 == idx) {
+            return word.charAt(idx) == board[point.x][point.y];
+        } else {
+            char value = word.charAt( idx );
+            boolean matches = board[point.x][point.y] == value;
+            seen[point.x][point.y] = 1;
+
+            boolean result = matches && moves.stream()
                     .map( p -> new Point( point.x + p.x, point.y + p.y ) )
                     .filter( p -> validCell(board, p) )
-                    .filter( p -> !newSet.contains( p ) )
-                    .map( p -> exist(board, word.substring( 1 ), moves, p, newSet) )
+                    .filter( p -> seen[p.x][p.y] == 0)
+                    .map( p -> exist(board, word, moves, p, seen, idx + 1) )
                     .reduce( false, (a, b) -> a || b );
+
+            if (!result) seen[point.x][point.y] = 0;
+
+            return result;
         }
     }
 
@@ -58,4 +56,5 @@ public class WordSearch {
             return false;
         }
     }
+
 }
