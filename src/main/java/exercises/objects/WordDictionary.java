@@ -4,6 +4,9 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Ideal challenge to propose to candidates
+ */
 class WordDictionary {
     private WordTrie wordTrie;
 
