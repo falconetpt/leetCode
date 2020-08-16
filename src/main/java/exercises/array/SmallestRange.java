@@ -14,10 +14,16 @@ public class SmallestRange {
     }
 
     private int[] smallestRange(List<LinkedList<Integer>> nums, int smallestRange, int start, int end) {
-        int maxValue = nums.stream().map(LinkedList::peekFirst).filter(Objects::nonNull)
-                .max(Integer::compareTo).orElse(Integer.MAX_VALUE);
-        int minValue = nums.stream().map(LinkedList::peekFirst).filter(Objects::nonNull)
-                .min(Integer::compareTo).orElse(Integer.MIN_VALUE);
+        int maxValue = nums.stream()
+                .map(LinkedList::peekFirst)
+                .filter(Objects::nonNull)
+                .max(Integer::compareTo)
+                .orElse(Integer.MAX_VALUE);
+        int minValue = nums.stream()
+                .map(LinkedList::peekFirst)
+                .filter(Objects::nonNull)
+                .min(Integer::compareTo)
+                .orElse(Integer.MIN_VALUE);
 
         int currentRange = maxValue - minValue;
         int newRange = Math.min(currentRange, smallestRange);

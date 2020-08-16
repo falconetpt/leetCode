@@ -43,7 +43,6 @@ public class NumberIslands {
         }
     }
 
-
     public Set<Pair> obtainsCoordinatesOfIslands(final char[][] grid) {
         return IntStream.range(0, grid.length).boxed().flatMap(
                 row -> IntStream.range(0, grid[row].length).boxed()
