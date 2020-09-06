@@ -8,7 +8,7 @@ public class SmallestRepUnitDivByK {
         if (K % 2 == 0 || K % 5 == 0) {
             return -1;
         } else {
-            return Stream.iterate( BigInteger.ONE,  (i) -> i.multiply( BigInteger.valueOf( 10L ) ).add( BigInteger.ONE ))
+            return Stream.iterate( BigInteger.ONE,  i -> i.multiply( BigInteger.valueOf( 10L ) ).add( BigInteger.ONE ))
                     .filter( x -> x.remainder( BigInteger.valueOf( K ) ).intValue() == 0 )
                     .limit( 1 )
                     .map(BigInteger::toString)
