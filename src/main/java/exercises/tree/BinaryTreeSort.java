@@ -19,7 +19,7 @@ public class BinaryTreeSort {
                 .collect( Collectors.toList());
     }
 
-    public void fillList(TreeNode node, List<Integer> result) {
+    private void fillList(TreeNode node, List<Integer> result) {
         if (Objects.nonNull(node)) {
             result.add( node.val );
             fillList( node.left, result );
