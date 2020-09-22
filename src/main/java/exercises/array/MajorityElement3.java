@@ -15,7 +15,7 @@ public class MajorityElement3 {
 
         return frequency.entrySet().stream()
                 .filter( e -> e.getValue() > length )
-                .map( e -> e.getKey() )
+                .map( Map.Entry::getKey )
                 .collect( Collectors.toList());
     }
 }
