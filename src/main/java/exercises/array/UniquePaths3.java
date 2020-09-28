@@ -24,6 +24,7 @@ public class UniquePaths3 {
                 new Point( -1, 0 )
         ).collect( Collectors.toList());
 
+
         final Point startPoint = IntStream.range( 0, grid.length ).boxed()
                 .flatMap(
                         x -> IntStream.range( 0, grid[x].length ).boxed()
