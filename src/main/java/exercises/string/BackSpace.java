@@ -6,18 +6,13 @@ import java.util.Stack;
 
 public class BackSpace {
     public boolean backspaceCompare(String S, String T) {
-        String sTrim = trimStrim(S, 0, new Stack<>() );
-        String tTrim = trimStrim(T, 0, new Stack<>() );
-        System.out.println(sTrim + ":" + tTrim);
-
-        return sTrim.equals( tTrim );
+        return trimStrim(S, 0, new Stack<>() )
+                .equals( trimStrim(T, 0, new Stack<>() ) );
     }
 
-    private String trimStrim(String s, int index, Stack<Character> characters) {
+    private Stack<Character> trimStrim(String s, int index, Stack<Character> characters) {
         if (index >= s.length()) {
-            return characters.stream()
-                    .map( String::valueOf )
-                    .reduce( "", String::concat );
+            return characters;
         } else {
             char element = s.charAt( index );
 
