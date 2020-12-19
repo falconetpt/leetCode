@@ -1,7 +1,6 @@
 package exercises.tree;
 
 import exercises.array.helper.TreeNode;
-import scala.Int;
 
 import java.util.HashMap;
 import java.util.Map;

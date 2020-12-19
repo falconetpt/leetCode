@@ -1,8 +1,8 @@
 package exercises.array;
 
-import scala.Int;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
