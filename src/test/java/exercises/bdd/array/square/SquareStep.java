@@ -1,4 +1,4 @@
-package exercises.bdd.array.array.cherry;
+package exercises.bdd.array.square;
 
 import exercises.array.CherryPick;
 import exercises.array.SquareElement;

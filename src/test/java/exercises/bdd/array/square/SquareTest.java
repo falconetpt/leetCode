@@ -1,4 +1,4 @@
-package exercises.bdd.array.array.cherry;
+package exercises.bdd.array.square;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
