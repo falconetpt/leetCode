@@ -16,7 +16,7 @@ public class DecodeStep implements En {
 
     public DecodeStep() {
         Given("a input {string}", (String input) -> this.input = input);
-        When("i decode it", () -> result = new Decode().numDecodings(input));
+//        When("i decode it", () -> result = new Decode().numDecodings(input));
         Then("the result should be {int}", (a) -> assertEquals(a, result) );
     }
 }
