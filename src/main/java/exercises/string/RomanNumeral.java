@@ -13,7 +13,7 @@ public class RomanNumeral {
 
   public static int convert(final String value) {
     int result = 0;
-    int previousValue = 0;
+    int previousValue;
     int currentValue = 0;
 
     for (int i = 0; i < value.length(); i++) {
