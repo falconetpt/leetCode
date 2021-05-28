@@ -8,6 +8,8 @@ import java.util.stream.Stream;
 
 public class ReversePolishNotation {
   public int evalRPN(final String[] tokens) {
+    if (tokens.length == 1) return Integer.parseInt(tokens[0]);
+
     final var list = new LinkedList<Integer>();
 
     Integer total = null;
@@ -40,10 +42,10 @@ public class ReversePolishNotation {
             total += list.pollLast();
             break;
           case "/":
-            total /= list.pollLast();
+            total = list.pollLast() / total;
             break;
           case "-":
-            total -= list.pollLast();
+            total = list.pollLast() - total;
             break;
           case "*":
             total *= list.pollLast();

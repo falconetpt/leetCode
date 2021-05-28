@@ -21,4 +21,12 @@ public class ReversePolishNotationTest {
 
     assertEquals(6, actual);
   }
+
+  @Test
+  public void test3() {
+    final var actual = reversePolishNotation
+      .evalRPN(new String[]{"10","6","9","3","+","-11","*","/","*","17","+","5","+"});
+
+    assertEquals(22, actual);
+  }
 }
