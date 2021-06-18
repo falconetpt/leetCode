@@ -13,12 +13,12 @@ class NumArray {
   }
 
   private int[] createAccumulatedNums() {
-    final var result = new int[baseNums.length + 1];
+    final var result = new int[baseNums.length];
     var total = 0;
 
     for (int i = 0, n = baseNums.length; i < n; i++) {
       total += baseNums[i];
-      result[i + 1] = total;
+      result[i] = total;
     }
 
     return result;
@@ -29,10 +29,11 @@ class NumArray {
     baseNums[index] = val;
 
     IntStream.range(index, baseNums.length)
-      .forEach(i -> baseNums[i] += difference);
+      .forEach(i -> accumulatedNums[i] += difference);
   }
 
   public int sumRange(int left, int right) {
-    return accumulatedNums[right + 1] - accumulatedNums[left];
+    if (left == right) return baseNums[left];
+    return accumulatedNums[right] - accumulatedNums[left] + accumulatedNums[left];
   }
 }
