@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TitleToNumberTest {
-    private TitleToNumber titleToNumber = new TitleToNumber();
+    private final TitleToNumber titleToNumber = new TitleToNumber();
 
     @Test
     @DisplayName( "Scenario 1 - Simple Letter A to 1" )
