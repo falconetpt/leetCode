@@ -1,10 +1,8 @@
 package exercises.array;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.TreeMap;
-import java.util.TreeSet;
 
 public class CountSmaller {
   public List<Integer> countSmaller(int[] nums) {
