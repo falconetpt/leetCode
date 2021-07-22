@@ -1,6 +1,6 @@
-package exercises;
+package exercises.two.pointer;
 
-public class TwoPointer {
+public class FlipAndInvert {
   public int[][] flipAndInvertImage(int[][] image) {
     final var result = new int[image.length][image.length];
 
