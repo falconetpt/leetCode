@@ -12,10 +12,11 @@ public class DecodeWays {
 
     for (int i = s.length() - 2; i >= 0; i--) {
       final var value = s.charAt(i) - '0';
-      final var nextValue = s.charAt(i + 1) - '0';
-      final var sum = value * 10 + nextValue;
 
       if (value > 0 ) {
+        final var nextValue = s.charAt(i + 1) - '0';
+        final var sum = value * 10 + nextValue;
+
         result[i] =result[i + 1];
         if (sum > 0 && sum < 27) {
           result[i] += result[i + 2];
