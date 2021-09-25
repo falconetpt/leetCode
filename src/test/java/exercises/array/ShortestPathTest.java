@@ -42,4 +42,15 @@ public class ShortestPathTest {
 
     assertEquals(-1, shortestPath.shortestPath(grid, 0));
   }
+
+  @Test
+  public void shortestPath_4() {
+    final var grid = new int[][] {
+      new int[]{0,1,1},
+      new int[]{1,1,1},
+      new int[]{1,0,0}
+    };
+
+    assertEquals(-1, shortestPath.shortestPath(grid, 1));
+  }
 }
