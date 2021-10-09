@@ -9,7 +9,7 @@ public class MaxNumberOfPoints {
     for (int i = 0; i < points.length; i++) {
       for (int j = 0; j < points[i].length; j++) {
         final var element = points[i][j];
-        for (int k = Math.max(0, j - 1); k < Math.min(points[i].length, j + 2); k++) {
+        for (int k = 0; k < points[i].length; k++) {
           final int difference = Math.abs(k - j);
           result[i + 1][j] = Math.max(result[i + 1][j],
             result[i][k] + element - difference);
