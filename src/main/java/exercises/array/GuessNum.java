@@ -19,4 +19,8 @@ public class GuessNum {
       return guessNumber( start, n.subtract(BigInteger.ONE));
     }
   }
+
+  public int guess(int num) {
+    return 0;
+  }
 }
