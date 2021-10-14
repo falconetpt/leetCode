@@ -29,11 +29,11 @@ public class NthUglyNumber {
       return result.get(number);
     } else {
       if (number % 2 == 0) {
-        return isUgly(number / 2, result);
+        return result.get(number / 2);
       } else if (number % 3 == 0) {
-        return isUgly(number / 3, result);
+        return result.get(number / 3);
       } else if (number % 5 == 0) {
-        return isUgly(number / 5, result);
+        return result.get(number / 5);
       }
       return false;
     }
