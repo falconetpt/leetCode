@@ -1,26 +1,30 @@
 package exercises.array;
 
 public class TimeToBuyAndSellStockTwoTimes {
-  public int maxProfit(final int[] prices) {
-    var max = 0;
+  public int maxProfit(int[] prices) {
+    int n = prices.length;
+    if (n == 0) return 0;
 
-    for (int i = prices.length - 2; i >= 0; i--) {
-      max = Math.max(max, maxProfit(prices, i, prices.length) + maxProfit(prices, 0, i));
+    int[] left = new int[n];
+    int[] right = new int[n];
+
+    int minLeft = prices[0];
+    for (int i = 1; i < n; i++) {
+      left[i] = Math.max(left[i - 1], prices[i] - minLeft);
+      minLeft = Math.min(minLeft, prices[i]);
     }
 
-    return max;
-  }
-
-  private int maxProfit(final int[] prices, final int start, final int end) {
-    var max = 0;
-    var min = Integer.MAX_VALUE;
-
-    for (int i = start; i < end; i++) {
-      final var element = prices[i];
-      min = Math.min(min, element);
-      max = Math.max(element - min, max);
+    int maxRight = prices[n - 1];
+    for (int i = n - 2; i >= 0; i--) {
+      right[i] = Math.max(right[i + 1], maxRight - prices[i]);
+      maxRight = Math.max(maxRight, prices[i]);
     }
 
-    return max;
+    int maxProfit = 0;
+    for (int i = 0; i < n; i++) {
+      maxProfit = Math.max(maxProfit, left[i] + right[i]);
+    }
+
+    return maxProfit;
   }
 }
