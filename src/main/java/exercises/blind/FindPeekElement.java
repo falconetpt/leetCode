@@ -1,6 +1,5 @@
 package exercises.blind;
 
-import java.util.Comparator;
 import java.util.stream.IntStream;
 
 public class FindPeekElement {
