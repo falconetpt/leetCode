@@ -1,7 +1,6 @@
 package exercises.array;
 
 import java.util.Arrays;
-import java.util.Comparator;
 
 public class RemoveCoveredIntervals {
   public int removeCoveredIntervals(final int[][] intervals) {
