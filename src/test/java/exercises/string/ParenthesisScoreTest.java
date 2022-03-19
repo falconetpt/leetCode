@@ -17,4 +17,24 @@ public class ParenthesisScoreTest {
   public void scoreOfParentheses_emptyString_returns0() {
     assertEquals(0, parenthesisScore.scoreOfParentheses(""));
   }
+
+  @Test
+  public void scoreOfParentheses_simpleParetheses_returns1() {
+    assertEquals(1, parenthesisScore.scoreOfParentheses("()"));
+  }
+
+  @Test
+  public void scoreOfParentheses_doubleParentheses_returns2() {
+    assertEquals(2, parenthesisScore.scoreOfParentheses("()()"));
+  }
+
+  @Test
+  public void scoreOfParentheses_doubleInsideParentheses_returns2() {
+    assertEquals(2, parenthesisScore.scoreOfParentheses("(())"));
+  }
+
+  @Test
+  public void scoreOfParentheses_doubleInsideTwoParentheses_returns4() {
+    assertEquals(4, parenthesisScore.scoreOfParentheses("(()())"));
+  }
 }
