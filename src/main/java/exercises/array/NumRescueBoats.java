@@ -1,7 +1,6 @@
 package exercises.array;
 
 import java.util.Arrays;
-import java.util.HashSet;
 
 public class NumRescueBoats {
   public int numRescueBoats(int[] people, int limit) {
