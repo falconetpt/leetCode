@@ -2,31 +2,30 @@ package exercises.tree;
 
 import exercises.array.helper.TreeNode;
 
-import java.util.PriorityQueue;
+import java.util.LinkedList;
 
 class BSTIterator {
-    private PriorityQueue<Integer> iterator;
+    private final LinkedList<TreeNode> list;
 
     public BSTIterator(TreeNode root) {
-        iterator = new PriorityQueue<>(  );
-        init(root);
+        list = new LinkedList<>();
+        constructBST(list, root);
     }
 
-    /** @return the next smallest number */
     public int next() {
-        return iterator.poll();
+        return list.pollFirst().val;
     }
 
-    /** @return whether we have a next smallest number */
     public boolean hasNext() {
-        return !iterator.isEmpty();
+        return !list.isEmpty();
     }
 
-    private void init(TreeNode root) {
-        if(root != null) {
-            iterator.add( root.val );
-            init( root.left );
-            init( root.right );
+    private void constructBST(final LinkedList<TreeNode> list, final TreeNode node) {
+        if (node != null) {
+            constructBST(list, node.left);
+            list.addLast(node);
+            constructBST(list, node.right);
+
         }
     }
 }
