@@ -14,10 +14,10 @@ public class LongestArithSeqLength {
         final var difference = nums[j] - value;
         final var mapValue = map.remove(difference);
 
-        if (mapValue == null) {
-          map.put(difference * 2, new Point(difference, 2));
-          result = Math.max(2, result);
-        } else {
+        map.put(difference * 2, new Point(difference, 2));
+        result = Math.max(2, result);
+
+        if (mapValue != null) {
           map.put(difference + mapValue.x, new Point(mapValue.x, mapValue.y + 1));
           result = Math.max(result, mapValue.y + 1);
         }
