@@ -8,6 +8,6 @@ public class Cookie {
         .reduce(0, Integer::sum);
     Arrays.sort(cookies);
     final var max = Integer.MIN_VALUE;
-    return ;
+    return 1;
   }
 }
