@@ -1,6 +1,5 @@
 package exercises.array;
 
-import io.cucumber.java8.No;
 
 import java.util.ArrayList;
 import java.util.Comparator;
