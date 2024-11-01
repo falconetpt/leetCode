@@ -40,6 +40,8 @@ public class BaseArrange {
         if (!match) return false;
       }
     }
+
+    return false;
   }
 
   private Map<Integer, Integer> createMap(int[] arr) {
