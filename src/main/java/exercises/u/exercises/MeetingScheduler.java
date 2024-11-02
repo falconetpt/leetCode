@@ -3,13 +3,11 @@ package exercises.u.exercises;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
-import java.util.TreeSet;
 
 public class MeetingScheduler {
   public int[] meetingScheduler(final int[][] slot1, final int[][] slot2, int duration) {
     final var pqSlot1 = new PriorityQueue<int[]>(Comparator.comparing(s -> s[0]));
     final var pqSlot2 = new PriorityQueue<int[]>(Comparator.comparing(s -> s[0]));
-    final var treeSet = new TreeSet<Integer>();
     pqSlot1.addAll(Arrays.asList(slot1));
     pqSlot2.addAll(Arrays.asList(slot2));
 
