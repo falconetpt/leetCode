@@ -10,8 +10,10 @@ public class MinBitwiseArray {
       final var element = nums.get(i);
 
       if ((ans[i] | element + 1) == element) {
-        ans[i] =
+        ans[i] = i;
       }
     }
+
+    return new int[0];
   }
 }
