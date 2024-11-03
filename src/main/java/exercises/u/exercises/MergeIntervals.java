@@ -7,6 +7,7 @@ import java.util.LinkedList;
 public class MergeIntervals {
   public int[][] merge(int[][] intervals) {
     Arrays.sort(intervals, Comparator.comparing(a -> a[0])); // O (n log n)
+
     final var list = new LinkedList<int[]>();
     list.add(new int[] { intervals[0][0], intervals[0][1] });
 
@@ -23,6 +24,6 @@ public class MergeIntervals {
 
     }
 
-    return list.toArray(int[][]::new);
+    return list.toArray(int[][]::new); // O (n)
   }
 }
