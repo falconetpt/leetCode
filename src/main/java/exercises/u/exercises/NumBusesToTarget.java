@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class NumBusesToTarget {
   private final Map<Integer, Set<BusConnection>> connections = new HashMap<>();
