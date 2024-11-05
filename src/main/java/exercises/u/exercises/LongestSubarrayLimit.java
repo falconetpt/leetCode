@@ -32,11 +32,13 @@ public class LongestSubarrayLimit {
         leftPointer++;
         priorityQueueMin.remove(firstElement);
         priorityQueueMax.remove(firstElement);
+      } else {
+        rightPointer++;
       }
 
       maxLength = Math.max(maxLength, rightPointer - leftPointer + 1);
 
-      rightPointer++;
+
     }
 
     return maxLength;
