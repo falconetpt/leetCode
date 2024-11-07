@@ -1,6 +1,5 @@
 package u.exercises;
 
-import exercises.array.KClosestPoint;
 
 import java.awt.*;
 
