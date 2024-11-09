@@ -2,22 +2,32 @@ package u.exercises;
 
 public class LongestPalindrome {
   public String longestPalindrome(String s) {
-    String max = "";
+    if (s.length() <= 1) {
+      return s;
+    }
 
-    for(int i = 0; i < s.length(); i++) {
-      for (int j = s.length(); j > i ; j--) {
-        if (j-i <= max.length()) break;
-        final var newStr = s.substring(i, j);
-        if(isPalindrome(newStr)) {
-          max = newStr;
-        }
+    String maxStr = s.substring(0, 1);
+
+    for (int i = 0; i < s.length() - 1; i++) {
+      String odd = expandFromCenter(s, i, i);
+      String even = expandFromCenter(s, i, i + 1);
+
+      if (odd.length() > maxStr.length()) {
+        maxStr = odd;
+      }
+      if (even.length() > maxStr.length()) {
+        maxStr = even;
       }
     }
-    return max;
+
+    return maxStr;
   }
 
-  public boolean isPalindrome(String s) {
-    final var sb = new StringBuilder(s);
-    return sb.toString().equals(sb.reverse().toString());
+  private String expandFromCenter(String s, int left, int right) {
+    while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+      left--;
+      right++;
+    }
+    return s.substring(left + 1, right);
   }
 }
